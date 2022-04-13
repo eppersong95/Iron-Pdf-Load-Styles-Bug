@@ -1,0 +1,51 @@
+﻿<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<div class="row d-flex align-items-end">
+    {{#if model.SalesGroupLogoUrl}}
+    <div class="col-5">
+        <img style="max-width:271px; max-height:56px; height:auto; width: auto; display:block;" class="ml-5" src="{{model.SalesGroupLogoUrl}}" alt="{{model.SalesGroupLogoUrl}}" />
+        <p class="mb-0 mt-1 ml-5" style="font-size: 12px; display:inline-block !important;">Powered by</p>
+        <img style="max-width:108px; max-height:22px; height:auto; width: auto; display:inline-block !important;" class="mt-1" src="https://dashboard.priority1.com/images/logo-inverted-full.png" alt="Priority1" />
+    </div>
+    {{else}}
+    <div class="col-2 text-left">
+        <img style="max-width:271px; max-height:56px; height:auto; width: auto; display:block;" class="ml-5" src="https://dashboard.priority1.com/images/logo-inverted-full.png" alt="Priority1" />
+    </div>
+    <div class="col-3"></div>
+    {{/if}}
+    <div class="col-4 text-right">
+        <h3 class="text-right font-weight-bold">Invoice {{model.InvoiceNumber}}</h3>
+        <table class="table table-bordered table-sm small mt-1 mb-0">
+            <thead>
+                <tr>
+                    <th style="width: 33%; background-color: rgba(0, 0, 0, .05) !important" class="text-center p-0">Invoice Date</th>
+                    <th style="width: 33%; background-color: rgba(0, 0, 0, .05) !important" class="text-center p-0">Due By</th>
+                    <th style="width: 33%; background-color: rgba(0, 0, 0, .05) !important" class="text-center p-0">Amount</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td style="width: 33%" class="text-center p-0 small">{{model.InvoiceDateFormatted}}</td>
+                    <td style="width: 33%" class="text-center p-0 small">{{model.DueDateFormatted}}</td>
+                    <td style="width: 33%" class="text-center p-0 small"><strong>{{model.InvoiceTotalFormatted}}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-sm small mt-0 mb-0">
+
+            <thead>
+                <tr>
+                    <th style="width: 50%; background-color: rgba(0, 0, 0, .05) !important" class="text-center p-0">Customer Number</th>
+                    <th style="width: 50%; background-color: rgba(0, 0, 0, .05) !important" class="text-center p-0">Terms</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td style="width: 50%" class="text-center p-0 small">{{model.CustomerNumber}}</td>
+                    <td style="width: 50%" class="text-center p-0 small">{{model.PaymentTermsFormatted}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

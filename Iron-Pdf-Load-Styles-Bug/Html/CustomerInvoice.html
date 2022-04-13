@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/199/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Statement</title>
+    <link rel="icon" type="image/png" href="https://priority1.blob.core.windows.net/www/favicon.ico" sizes="32x32" />
+    <style type="text/css">
+        body {
+            font-family: 'aktiv-grotesk', sans-serif;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, .05);
+            font-size: 12px;
+            padding: 2px 2px 2px 2px !important;
+        }
+
+        td {
+            padding: 2px 2px 2px 2px !important;
+        }
+
+        address-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Shipment Info -->
+        <div class="row mt-2">
+            <div class="col-12 ">
+                <h5 class="font-weight-bold">Shipment</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-sm w-100 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="w-50"><div class="row"><div class="col-6 text-left">Shipper</div><div class="col-6 text-right"><small>Pickup Date: <strong>{{model.PickupDateFormatted}}</strong></small></div></div></th>
+                            <th class="w-50"><div class="row"><div class="col-6 text-left">Consignee</div><div class="col-6 text-right"><small>Delivery Date: <strong>{{model.DeliveryDateFormatted}}</strong></small></div></div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-size: 12px;">
+                                {{model.OriginAddress.Name}}<br /> {{model.OriginAddress.LineOne}}
+                                <br /> {{#if model.OriginAddress.LineTwo}} {{model.OriginAddress.LineTwo}} <br /> {{/if}} {{model.OriginAddress.City}}, {{model.OriginAddress.State}} {{model.OriginAddress.Zip}} {{model.OriginAddress.Country}}
+                                <br /> {{model.OriginAddress.PhoneNumberFormatted}}<br />
+                            </td>
+
+                            <td style="font-size: 12px;">
+                                {{model.DestinationAddress.Name}}<br /> {{model.DestinationAddress.LineOne}}
+                                <br /> {{#if model.DestinationAddress.LineTwo}} {{model.DestinationAddress.LineTwo}} <br /> {{/if}} {{model.DestinationAddress.City}}, {{model.DestinationAddress.State}} {{model.DestinationAddress.Zip}} {{model.DestinationAddress.Country}}<br /> {{model.DestinationAddress.PhoneNumberFormatted}}
+                                <br />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-sm small mb-0">
+                    <thead>
+                        <tr>
+                            <th width="5%" class="text-center">Qty</th>
+                            <th width="5%">Type</th>
+                            <th width="10%">Weight</th>
+                            <th width="20%">Dimensions</th>
+                            <th width="10%">NMFC</th>
+                            <th width="40%">Description</th>
+                            <th width="10%">Class</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each model.Items}}
+                        <tr>
+                            <td class="text-center">{{this.Quantity}}</td>
+                            <td>{{this.TypeHumanized}}</td>
+                            <td>{{this.WeightFormatted}}</td>
+                            <td>{{this.DimensionsFormatted}}</td>
+                            <td>{{this.NMFC}}</td>
+                            <td class="text-capitalize">{{this.Description}}</td>
+                            <td>{{this.FreightClassHumanized}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+
+                <table class="table table-bordered table-sm small">
+                    <thead>
+                        <tr>
+                            <th class="w-50">Accessorials</th>
+                            <th class="w-50">Special Instructions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ model.ShipmentAccessorialsFormatted }}</td>
+                            <td>{{ model.SpecialInstructions }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- References -->
+            <div class="col-6">
+                <h5 class="pb-2 font-weight-bold">References</h5>
+                <table class="table table-bordered table-sm small">
+                    <tbody>
+                        <tr>
+                            <th class="w-50">Carrier</th>
+                            <td class="w-50">{{model.CarrierName}}</td>
+                        </tr>
+                        {{#each model.Identifiers}}
+                        <tr>
+                            <th>{{this.TypeHumanized}}</th>
+                            <td>{{this.Value}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Charges -->
+            <div class="col-6">
+                <h5 class="pb-2 font-weight-bold">Charges</h5>
+                <table class="table table-bordered table-sm small">
+                    <thead>
+                        <tr>
+                            <th class="w-75">Description</th>
+                            <th class="w-25 text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    {{ #if model.ShowCharges }}
+                    <tbody>
+                        {{ #each model.Charges }}
+                        <tr>
+                            <td class="w-75 text-capitalize">{{ this.Description }}</td>
+                            <td class="w-25 text-right">{{ this.TotalFormatted }}</td>
+                        </tr>
+                        {{ /each }}
+                    </tbody>
+                    {{ else }}
+                    <tbody>
+                        <tr>
+                            <td class="w-75">Freight charges</td>
+                            <td class="w-25 text-right">{{ model.InvoiceTotalFormatted }}</td>
+                        </tr>
+                    </tbody>
+                    {{ /if }}
+                    <tr>
+                        <td class="text-right w-75" style="font-size: 17px"><strong>Total Amount Due</strong></td>
+                        <td class="text-right w-25" style="font-size: 17px">
+                            {{ #if model.IsPrepay }}
+                            <strong>$0.00</strong> {{ else }}
+                            <strong>{{ model.InvoiceTotalFormatted }}</strong> {{ /if }}
+                        </td>
+                    </tr>
+                    {{ #if model.Memo }}
+                    <tr>
+                        <th colspan="2">Memo</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{model.Memo}}</td>
+                    </tr>
+                    {{/if}}
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-7 pt-5">
+                <strong class="text-secondary text-uppercase" style="font-size: 12px; letter-spacing: 1px;">Bill To</strong>
+                <p class="mt-0" style="font-size: 13px">
+                    {{model.BillToAddress.Name}} <br /> {{model.BillToAddress.LineOne}} <br /> {{#if model.BillToAddress.LineTwo}} {{model.BillToAddress.LineTwo}} <br /> {{/if}} {{model.BillToAddress.City}}, {{model.BillToAddress.State}} {{model.BillToAddress.Zip}}
+                    {{model.BillToAddress.Country}}
+                </p>
+            </div>
+            <!-- Aging Info -->
+            <div class="col-5 pt-4">
+                <h6 class="pb-2"><strong>Account Summary</strong></h6>
+                <table class="table table-bordered table-sm small w-100">
+                    <tbody>
+                        <tr>
+                            <th class="text-left w-25" style="background-color: rgba(0, 0, 0, .05)">1-30</th>
+                            <td class="text-right">{{model.Aging1To30Formatted}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left" style="background-color: rgba(0, 0, 0, .05)">31-60</th>
+                            <td class="text-right">{{model.Aging31To60Formatted}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left" style="background-color: rgba(0, 0, 0, .05)">61-90</th>
+                            <td class="text-right">{{model.Aging61To90Formatted}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left" style="background-color: rgba(0, 0, 0, .05)">90+</th>
+                            <td class="text-right">{{model.Aging90PlusFormatted}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-left" style="background-color: rgba(0, 0, 0, .05)">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Remit To: </strong>
+                                    </div>
+                                    <div class="col-8">
+                                        Priority1<br /> PO Box 840808<br /> Dallas, TX 75284-0808<br /> (888) 569-8035
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

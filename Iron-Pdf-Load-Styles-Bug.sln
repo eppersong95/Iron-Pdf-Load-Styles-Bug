@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iron-Pdf-Load-Styles-Bug", "Iron-Pdf-Load-Styles-Bug\Iron-Pdf-Load-Styles-Bug.csproj", "{BBFB7457-6800-4FAF-992C-B00A076B0D34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBFB7457-6800-4FAF-992C-B00A076B0D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBFB7457-6800-4FAF-992C-B00A076B0D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBFB7457-6800-4FAF-992C-B00A076B0D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBFB7457-6800-4FAF-992C-B00A076B0D34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A1709D4-4ED0-44EC-9962-286ADCDB9725}
+	EndGlobalSection
+EndGlobal
